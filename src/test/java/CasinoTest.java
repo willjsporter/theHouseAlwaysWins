@@ -115,4 +115,18 @@ public class CasinoTest {
         assertThat(casino.getHighRollers(testSessionsAcross40players), is(List.of(3,2)));
     }
 
+    @Test
+    public void ensureThat5PercentOfPlayersIsCalculatedBy_RoundingDownToTheNearestWholeNumberOfPlayers() {
+
+        List<PlayerSession> testSessionsAcross39Players = List.of(
+                session1, session2, session3, session4, session5, session6, session7, session8, session9, session10,
+                session11, session12, session13, session14, session15, session16, session17, session18, session19,
+                session20, session21, session22, session23, session24, session25, session26, session27, session28,
+                session29, session30, session31, session32, session33, session34, session35, session36, session37,
+                session38, session39, session40, session41, session42
+        );
+
+        assertThat(casino.getHighRollers(testSessionsAcross39Players), is(List.of(3)));
+    }
+
 }
