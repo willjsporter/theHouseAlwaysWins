@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class CasinoTest {
@@ -37,7 +38,22 @@ public class CasinoTest {
                         )
                 )
         );
+    }
 
+    @Test
+    public void shouldBeAbleToTakeAMapOfAllSessionsByPlayerAndReturnTheTotalProfitPerPlayer() {
+        assertThat(casino.mapOfPlayersToProfits(
+                Map.of(
+                        1, List.of(session1, session2),
+                        2, List.of(session3, session4),
+                        3, List.of(session5)
+                )),
+                is(Map.of(
+                        1, 8,
+                        2, 18,
+                        3, 13
+                    ))
+        );
     }
 
 }
