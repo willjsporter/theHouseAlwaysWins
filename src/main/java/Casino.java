@@ -12,7 +12,10 @@ public class Casino {
     );
 
     public List<Integer> getHighRollers(List<PlayerSession> playerSessions) {
-        return null;
+        Map<Integer, Integer> playersAndProfits = mapOfPlayersToProfits(groupByPlayers(playerSessions));
+        int numberOfHighRollers = (playersAndProfits.size()) / 20;
+
+        return listOfPlayerIdsSortedByProfits(playersAndProfits).subList(0, numberOfHighRollers);
     }
 
     List<Integer> listOfPlayerIdsSortedByProfits(Map<Integer, Integer> playersWithProfits) {
@@ -38,8 +41,6 @@ public class Casino {
                         )
                 );
     }
-
-
 
     private int getTotalEarningsForSeveralSessions(List<PlayerSession> individualPlayerSessions) {
         return individualPlayerSessions.stream()
