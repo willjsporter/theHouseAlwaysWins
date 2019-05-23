@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,6 +13,13 @@ public class Casino {
 
     public List<Integer> getHighRollers(List<PlayerSession> playerSessions) {
         return null;
+    }
+
+    List<Integer> listOfPlayerIdsSortedByProfits(Map<Integer, Integer> playersWithProfits) {
+        return playersWithProfits.entrySet().stream()
+                .sorted(Comparator.comparing(Map.Entry::getValue,Comparator.reverseOrder()))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
     }
 
     Map<Integer, Integer> mapOfPlayersToProfits(Map<Integer, List<PlayerSession>> players) {

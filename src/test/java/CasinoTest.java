@@ -56,4 +56,16 @@ public class CasinoTest {
         );
     }
 
+
+
+    @Test
+    public void shouldBeAbleToTakeAListOfSessionsAndReturnAListOfPlayerIdsSortedByProfit() {
+        Map<Integer, List<PlayerSession>> groupedByPlayer = casino.groupByPlayers(List.of(session1, session2, session3, session4, session5));
+        Map<Integer, Integer> profitsPerPlayer = casino.mapOfPlayersToProfits(groupedByPlayer);
+
+        assertThat(casino.listOfPlayerIdsSortedByProfits(profitsPerPlayer),
+                is(List.of(2,3,1))
+        );
+    }
+
 }
