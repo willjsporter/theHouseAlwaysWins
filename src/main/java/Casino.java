@@ -18,14 +18,14 @@ public class Casino {
         return listOfPlayerIdsSortedByProfits(playersAndProfits).subList(0, numberOfHighRollers);
     }
 
-    List<Integer> listOfPlayerIdsSortedByProfits(Map<Integer, Integer> playersWithProfits) {
+    private List<Integer> listOfPlayerIdsSortedByProfits(Map<Integer, Integer> playersWithProfits) {
         return playersWithProfits.entrySet().stream()
                 .sorted(Comparator.comparing(Map.Entry::getValue,Comparator.reverseOrder()))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
     }
 
-    Map<Integer, Integer> mapOfPlayersToProfits(Map<Integer, List<PlayerSession>> players) {
+    private Map<Integer, Integer> mapOfPlayersToProfits(Map<Integer, List<PlayerSession>> players) {
         return players.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
@@ -34,7 +34,7 @@ public class Casino {
                 );
     }
 
-    Map<Integer, List<PlayerSession>> groupByPlayers(List<PlayerSession> playerSessions) {
+    private Map<Integer, List<PlayerSession>> groupByPlayers(List<PlayerSession> playerSessions) {
         return playerSessions.stream()
                 .collect(Collectors.groupingBy(
                         PlayerSession::getPlayerId
